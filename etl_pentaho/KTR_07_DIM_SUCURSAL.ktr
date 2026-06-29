@@ -510,7 +510,16 @@
       <schema_name/>
     </partitioning>
     <connection>Conexion_Local_Seguros</connection>
-    <sql>SELECT cod_sucursal, nb_sucursal FROM public.SUCURSAL;</sql>
+    <sql>SELECT 
+      s.cod_sucursal, 
+      s.nb_sucursal, 
+      c.cod_ciudad, 
+      c.nb_ciudad, 
+      p.cod_pais, 
+      p.nb_pais 
+    FROM public.sucursal s
+    INNER JOIN public.ciudad c ON s.cod_ciudad = c.cod_ciudad
+    INNER JOIN public.pais p ON c.cod_pais = p.cod_pais;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -643,19 +652,31 @@
     <return_keys>N</return_keys>
     <return_field/>
     <fields>
-      <field>
-        <column_name>COD_SUCURSAL</column_name>
-        <stream_name>cod_sucursal</stream_name>
-      </field>
-      <field>
-        <column_name>NB_SUCURSAL</column_name>
-        <stream_name>nb_sucursal</stream_name>
-      </field>
-      <field>
-        <column_name>SK_DIM_SUCURSAL</column_name>
-        <stream_name>SK_DIM_SUCURSAL</stream_name>
-      </field>
-    </fields>
+    <field>
+      <column_name>cod_sucursal</column_name>
+      <stream_name>cod_sucursal</stream_name>
+    </field>
+    <field>
+      <column_name>nb_sucursal</column_name>
+      <stream_name>nb_sucursal</stream_name>
+    </field>
+    <field>
+      <column_name>cod_ciudad</column_name>
+      <stream_name>cod_ciudad</stream_name>
+    </field>
+    <field>
+      <column_name>nb_ciudad</column_name>
+      <stream_name>nb_ciudad</stream_name>
+    </field>
+    <field>
+      <column_name>cod_pais</column_name>
+      <stream_name>cod_pais</stream_name>
+    </field>
+    <field>
+      <column_name>nb_pais</column_name>
+      <stream_name>nb_pais</stream_name>
+    </field>
+  </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
